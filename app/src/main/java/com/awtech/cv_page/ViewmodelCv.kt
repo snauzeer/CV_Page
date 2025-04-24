@@ -18,7 +18,7 @@ class ViewModel: ViewModel() {
 
     lateinit var Cvapp : AppDatabase
 
-    fun addperson(name: String, password: Int, email: String) {
+    fun addperson(name: String, password: String, email: String) {
         val person = Person(email= email, name = name, password = password)
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {

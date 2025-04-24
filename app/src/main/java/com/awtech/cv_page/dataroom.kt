@@ -13,7 +13,7 @@ import androidx.room.RoomDatabase
 data class Person(
     @PrimaryKey val email: String,
     val name: String,
-    val password: Int
+    val password: String
 )
 
 
