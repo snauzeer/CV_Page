@@ -119,7 +119,7 @@ fun decodeQRCode(base64: String): Bitmap {
     val decodedBytes = Base64.decode(base64, Base64.DEFAULT)
     return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
 }
-
+// komment
 /*
 @Composable
 fun Personinfo(viewmodel: ViewModel) {
