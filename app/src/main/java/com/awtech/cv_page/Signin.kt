@@ -1,5 +1,6 @@
 package com.awtech.cv_page
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.content.MediaType.Companion.Text
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -62,16 +63,17 @@ fun SigninScreen() {
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.padding(10.dp)
             ) {
-                Text("Forgot your password?")
+                Text("Forgot your password?",modifier = Modifier.clickable(onClick = {}))
                 Text(
                     "Sign in",
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.clickable(onClick = {})
                 )
             }
         }
 
-        Text("create an account")
+        Text("create an account",modifier = Modifier.clickable(onClick = {}))
 
 
         // Bottom section with "forgot" and "signin"

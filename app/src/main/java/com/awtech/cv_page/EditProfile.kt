@@ -2,6 +2,7 @@ package com.awtech.cv_page
 
 
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -65,7 +66,8 @@ fun EditProfile() {
             Column(modifier = Modifier.padding(20.dp)
             ) {
                 Text("Save", textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodyLarge)
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.clickable(onClick = {}))
             }
         }
 

@@ -13,10 +13,9 @@ import androidx.room.RoomDatabase
 data class Person(
     @PrimaryKey val email: String,
     val name: String,
-    val password: String
+    val password: String,
     val lastname: String,
     val phonenumber: String,
-    val password: Int,
     val qrCode: String
 )
 
