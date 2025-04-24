@@ -18,6 +18,7 @@ class ViewModel: ViewModel() {
 
     lateinit var Cvapp : AppDatabase
 
+    fun addperson(name: String, password: String, email: String) {
     fun addperson(name: String, lastname: String, phonenumber: String, password: Int, email: String) {
         val vCard = """
         BEGIN:VCARD

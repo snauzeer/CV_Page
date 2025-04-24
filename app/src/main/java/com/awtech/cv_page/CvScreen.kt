@@ -128,7 +128,7 @@ fun Personinfo(viewmodel: ViewModel) {
     Column {
         Text("hello")
 
-        Button(onClick = {viewmodel.addperson("ahmad", 123, "wello.com")}) {
+        Button(onClick = {viewmodel.addperson("ahmad", "123", "wello.com")}) {
 
             Text("Add")
 

@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CV_PageTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Personinfo(viewmodel)
+                    PageNav(viewmodel)
 
                 }
             }
