@@ -13,7 +13,10 @@ import androidx.room.RoomDatabase
 data class Person(
     @PrimaryKey val email: String,
     val name: String,
-    val password: Int
+    val lastname: String,
+    val phonenumber: String,
+    val password: Int,
+    val qrCode: String
 )
 
 
@@ -31,8 +34,13 @@ interface PersonDao {
 }
 
 
-
-@Database(entities = [Person::class], version = 1)
+@Database(entities = [Person::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun personDao(): PersonDao
 }
+
+/*
+@Database(entities = [Person::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun personDao(): PersonDao
+}*/
