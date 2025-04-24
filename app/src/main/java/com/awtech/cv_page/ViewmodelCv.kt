@@ -18,10 +18,9 @@ class ViewModel: ViewModel() {
 
     lateinit var Cvapp : AppDatabase
 
-    fun addperson(name: String, password: String, email: String) {
-    fun addperson(name: String, lastname: String, phonenumber: String, password: Int, email: String) {
-        val vCard = """
-        BEGIN:VCARD
+    fun addperson(name: String, lastname: String, phonenumber: String,
+                      password: String, email: String) {
+            val vCard = """BEGIN:VCARD
         VERSION:3.0
         N:$name; $lastname
         TEL:$phonenumber
@@ -29,21 +28,22 @@ class ViewModel: ViewModel() {
         END:VCARD
     """.trimIndent()
 
-        val qrCode = QrCodeGenerator.generateQRCode(vCard)
-        val person = Person(email = email,
-            name = name,
-            lastname = lastname,
-            phonenumber = phonenumber,
-            password = password,
-            qrCode = qrCode
-        )
+            val qrCode = QrCodeGenerator.generateQRCode(vCard)
+            val person = Person(
+                email = email,
+                name = name,
+                lastname = lastname,
+                phonenumber = phonenumber,
+                password = password,
+                qrCode = qrCode
+            )
 
-        val scope = CoroutineScope(Dispatchers.IO)
-        scope.launch {
-            Cvapp.personDao().insertAll(person)
+            val scope = CoroutineScope(Dispatchers.IO)
+            scope.launch {
+                Cvapp.personDao().insertAll(person)
+            }
         }
-    }
-    /*
+        /*
     fun addperson(name: String, password: Int, email: String) {
         val person = Person(email= email, name = name, password = password)
         val scope = CoroutineScope(Dispatchers.IO)
@@ -52,15 +52,14 @@ class ViewModel: ViewModel() {
         }
     }*/
 
-    @OptIn(UnstableApi::class)
-    fun load() {
-        val scope = CoroutineScope(Dispatchers.IO)
-        scope.launch {
-            val personlist = Cvapp.personDao().getAll()
-            _personlistview.value = personlist
+        @OptIn(UnstableApi::class)
+        fun load() {
+            val scope = CoroutineScope(Dispatchers.IO)
+            scope.launch {
+                val personlist = Cvapp.personDao().getAll()
+                _personlistview.value = personlist
 
+            }
         }
+
     }
-
-
-}

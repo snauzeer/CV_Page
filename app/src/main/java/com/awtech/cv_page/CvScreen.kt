@@ -75,7 +75,7 @@ fun Personinfo(viewmodel: ViewModel) {
                     name = name,
                     lastname = lastname,
                     phonenumber = phonenumber,
-                    password = 123, // Replace with actual password logic
+                    password = "123", // Replace with actual password logic
                     email = email
                 )
             },
