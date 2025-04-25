@@ -8,7 +8,10 @@ import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
+import kotlinx.serialization.Serializable
 
+
+@Serializable
 @Entity
 data class Person(
     @PrimaryKey val email: String,
