@@ -18,7 +18,7 @@ class ViewModel: ViewModel() {
 
     lateinit var Cvapp : AppDatabase
 
-    fun addperson(name: String, lastname: String, phonenumber: String,
+    fun addperson(name: String, lastname: String="", phonenumber: String="",
                       password: String, email: String) {
             val vCard = """BEGIN:VCARD
         VERSION:3.0
@@ -27,6 +27,7 @@ class ViewModel: ViewModel() {
         EMAIL:$email
         END:VCARD
     """.trimIndent()
+
 
             val qrCode = QrCodeGenerator.generateQRCode(vCard)
             val person = Person(
@@ -41,6 +42,7 @@ class ViewModel: ViewModel() {
             val scope = CoroutineScope(Dispatchers.IO)
             scope.launch {
                 Cvapp.personDao().insertAll(person)
+                load()
             }
         }
         /*
@@ -52,7 +54,6 @@ class ViewModel: ViewModel() {
         }
     }*/
 
-        @OptIn(UnstableApi::class)
         fun load() {
             val scope = CoroutineScope(Dispatchers.IO)
             scope.launch {

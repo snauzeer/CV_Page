@@ -35,6 +35,7 @@ fun CreateAccount(viewModel: ViewModel) {
     val listpersons by viewModel.personlistview.collectAsState()
 
 
+
     Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -44,15 +45,17 @@ fun CreateAccount(viewModel: ViewModel) {
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(emailexist)
-            TextField(value =email, onValueChange = {it},
+            TextField(value =email, onValueChange = {email=it},
                 label = {Text("email")} )
 
             Spacer(modifier = Modifier.height(20.dp))
-            TextField(value =password, onValueChange = {it},
+            Text(passwordexist)
+            TextField(value =password, onValueChange = {password=it},
                 label = {Text("password")} )
 
             Spacer(modifier = Modifier.height(20.dp))
-            TextField(value =name, onValueChange = {it},
+            Text(nameexist)
+            TextField(value =name, onValueChange = {name=it},
                 label = {Text("name")} )
 
             Column(modifier = Modifier.padding(20.dp)
@@ -60,23 +63,16 @@ fun CreateAccount(viewModel: ViewModel) {
                 Text("Create account", textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.clickable(onClick = {
-                        for (item in listpersons) {
-                            if (item.email !== email) {
-                                emailcheck = true
-                            }
-                        }
-                        if (emailcheck==false) {
-                            emailexist = "this email exist"
-                        }
-                        if(password =="") {
-                            passwordexist = "the password can not be empty"
-                        }
+                        val result = createaccountlogic(email, password, name, listpersons)
+                        emailexist = result.emailexist
+                        passwordexist = result.passwordexist
+                        nameexist = result.nameexist
+                        emailcheck = result.emailcheck
 
-                        if(name =="") {
-                            nameexist = "the name can not be empty"
-                        }
-                        if(emailcheck && name!=="" && password!=="") {
-                            emailcheck =true // type in a destionation
+
+                        if(!emailcheck && name!="" && password!="") {
+                            viewModel.addperson(name = name, password = password, email= email)
+
                         }
                     }))
             }
