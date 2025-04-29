@@ -8,17 +8,21 @@ import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
+import androidx.room.Update
 import kotlinx.serialization.Serializable
 
 
 @Serializable
 @Entity
 data class Person(
-    @PrimaryKey val email: String,
-    val name: String,
+    @PrimaryKey var email: String,
+    var name: String,
     val password: String,
     val lastname: String,
-    val phonenumber: String,
+    var phonenumber: String,
+    var Webpage: String,
+    var LinkedIn: String,
+    var Github: String,
     val qrCode: String
 )
 
@@ -33,6 +37,12 @@ interface PersonDao {
 
     @Delete
     fun delete(person: Person)
+
+    @Update
+    fun update(person: Person)
+
+    @Query("SELECT * FROM Person WHERE email = :email LIMIT 1")
+    fun getPersonByEmail(email: String): Person?
 
 }
 
