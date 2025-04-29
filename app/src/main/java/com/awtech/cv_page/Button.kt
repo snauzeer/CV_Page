@@ -5,8 +5,9 @@ import androidx.compose.material3.Text
 
 
 @Composable
-fun FilledButtonExample(onClick: () -> Unit) {
+fun FilledButtonExample(onClick: () -> Unit, text: String) {
     Button(onClick = { onClick() }) {
-        Text("Return to login")
+        Text(text = "text")
     }
 }
+
