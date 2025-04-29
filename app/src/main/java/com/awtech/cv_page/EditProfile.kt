@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EditProfile( viewModel: ViewModel) {
+fun EditProfile( viewModel: ViewModel, Tostartscreen: () -> Unit) {
 
     var Webpage by remember { mutableStateOf("") }
     var LinkedIn by remember { mutableStateOf("") }
@@ -88,9 +88,17 @@ fun EditProfile( viewModel: ViewModel) {
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.clickable(onClick = {
 
+                        var tostart = Person(email = email, name = name, password = "",
+                            lastname = "", phonenumber = Number, Webpage = Webpage,
+                            LinkedIn = LinkedIn, Github = Github, qrCode = "")
+
+                        viewModel.editperson = tostart
+
                         viewModel.update(person, name = name, email = email,
                             Webpage = Webpage, LinkedIn = LinkedIn, Github = Github,
                             phonenumber = Number)
+
+                        Tostartscreen()
 
                     }))
             }
@@ -105,5 +113,5 @@ fun EditProfile( viewModel: ViewModel) {
 @Composable
 @Preview(showBackground = true)
 fun MyEditPreview() {
-    EditProfile(ViewModel())
+    EditProfile(ViewModel(), Tostartscreen = {})
 }

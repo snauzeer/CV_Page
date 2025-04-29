@@ -26,8 +26,12 @@ fun PageNav(viewmodel: ViewModel) {
             signin = {destination -> navController.navigate(destination)}
             )}
 
-        composable("Editprofile") { EditProfile(viewModel = viewmodel) }
+        composable("Editprofile") { EditProfile(viewModel = viewmodel, Tostartscreen = {
+            navController.navigate("StartPage")
+        }) }
         composable("MyAccount") { MyAccount() }
+
+        composable("StartPage") { StartPage(viewmodel) }
 
 
         composable("Retrievepassword") { Retrieve() }

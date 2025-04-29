@@ -25,13 +25,21 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @Composable
-fun StartPage() {
+fun StartPage(viewModel: ViewModel) {
     var name by remember { mutableStateOf(TextFieldValue("")) }
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var profileImageUri by remember { mutableStateOf<Uri?>(null) }
     var qrCodeBase64 by remember { mutableStateOf<String?>(null) }
     var isLoading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+
+    var person = viewModel.editperson
+
+    LaunchedEffect(true) {
+        name = TextFieldValue(person.name)
+        email = TextFieldValue(person.email)
+    }
+
 
     val coroutineScope = rememberCoroutineScope()
 

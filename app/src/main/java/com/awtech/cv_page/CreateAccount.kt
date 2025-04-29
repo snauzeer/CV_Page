@@ -37,8 +37,6 @@ fun CreateAccount(viewModel: ViewModel, created: () -> Unit) {
     val listpersons by viewModel.personlistview.collectAsState()
     val coroutineScope = rememberCoroutineScope()
 
-
-
     Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly,
