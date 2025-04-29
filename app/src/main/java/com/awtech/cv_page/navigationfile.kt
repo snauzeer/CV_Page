@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-
+import androidx.navigation.toRoute
 
 
 @Composable
@@ -14,7 +14,11 @@ fun PageNav(viewmodel: ViewModel) {
     NavHost(navController = navController, startDestination = "Signin") {
 
         composable("CvScreen") { Personinfo(viewmodel) }
-        composable("CreateAccount") { CreateAccount(viewmodel) }
+        composable("CreateAccount") { backStackEntry -> CreateAccount(viewmodel, created = {
+            navController.navigate(route = "Editprofile")
+
+        }) }
+
         composable("Signin") {
             backStackEntry -> SigninScreen(viewModel = viewmodel,
             createaccount = { navController.navigate("CreateAccount") },
@@ -22,8 +26,10 @@ fun PageNav(viewmodel: ViewModel) {
             signin = {destination -> navController.navigate(destination)}
             )}
 
-        composable("Editprofile") { EditProfile() }
+        composable("Editprofile") { EditProfile(viewModel = viewmodel) }
         composable("MyAccount") { MyAccount() }
+
+
         composable("Retrievepassword") { Retrieve() }
     }
 

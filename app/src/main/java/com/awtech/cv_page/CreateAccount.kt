@@ -11,10 +11,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CreateAccount(viewModel: ViewModel) {
+fun CreateAccount(viewModel: ViewModel, created: () -> Unit) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
@@ -33,6 +35,7 @@ fun CreateAccount(viewModel: ViewModel) {
     var emailcheck = false
 
     val listpersons by viewModel.personlistview.collectAsState()
+    val coroutineScope = rememberCoroutineScope()
 
 
 
@@ -72,6 +75,13 @@ fun CreateAccount(viewModel: ViewModel) {
 
                         if(!emailcheck && name!="" && password!="") {
                             viewModel.addperson(name = name, password = password, email= email)
+                            val theaddedperson = Person(email = email, name = name,
+                                password = password, lastname = "", phonenumber = "",
+                                Webpage = "", LinkedIn = "", Github = "", qrCode = "")
+
+                            viewModel.editperson = theaddedperson
+
+                            created()
 
                         }
                     }))
@@ -87,5 +97,5 @@ fun CreateAccount(viewModel: ViewModel) {
 @Composable
 @Preview(showBackground = true)
 fun CreatePreview() {
-    CreateAccount(ViewModel())
+    CreateAccount(ViewModel(), created = {})
 }
