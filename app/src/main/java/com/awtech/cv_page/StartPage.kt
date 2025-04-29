@@ -28,6 +28,10 @@ import kotlinx.coroutines.withContext
 fun StartPage(viewModel: ViewModel, person: Person) {
     var name by remember { mutableStateOf(TextFieldValue("")) }
     var email by remember { mutableStateOf(TextFieldValue("")) }
+    var github by remember { mutableStateOf(TextFieldValue("")) }
+    var likedin by remember { mutableStateOf(TextFieldValue("")) }
+    var phonenumber by remember { mutableStateOf(TextFieldValue("")) }
+    var webpage by remember { mutableStateOf(TextFieldValue("")) }
     var profileImageUri by remember { mutableStateOf<Uri?>(null) }
     var qrCodeBase64 by remember { mutableStateOf<String?>(null) }
     var isLoading by remember { mutableStateOf(false) }
@@ -38,6 +42,12 @@ fun StartPage(viewModel: ViewModel, person: Person) {
     LaunchedEffect(true) {
         name = TextFieldValue(person.name)
         email = TextFieldValue(person.email)
+        github = TextFieldValue(person.Github)
+        likedin = TextFieldValue(person.LinkedIn)
+        phonenumber = TextFieldValue(person.phonenumber)
+        webpage = TextFieldValue(person.Webpage)
+
+
     }
 
     val coroutineScope = rememberCoroutineScope()
@@ -108,7 +118,38 @@ fun StartPage(viewModel: ViewModel, person: Person) {
                         text = email.text,
                         fontSize = 25.sp,
                         modifier = Modifier.padding(top = 8.dp)
+
+
                     )
+
+                    Text(
+                        text = github.text,
+                        fontSize = 25.sp,
+                        modifier = Modifier.padding(top = 8.dp)
+
+
+                    )
+                    Text(
+                        text = likedin.text,
+                        fontSize = 25.sp,
+                        modifier = Modifier.padding(top = 8.dp)
+
+
+                    )
+
+                    Text(
+                        text = phonenumber.text,
+                        fontSize = 25.sp,
+                        modifier = Modifier.padding(top = 8.dp)
+
+
+                    )
+                    Text(
+                        text = webpage.text,
+                        fontSize = 25.sp,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+
                 }
             }
 
@@ -149,8 +190,11 @@ fun StartPage(viewModel: ViewModel, person: Person) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
-                .align(Alignment.BottomCenter),
+                .height(100.dp)
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 50.dp),
+
+
             color = MaterialTheme.colorScheme.primary,
             shape = RoundedCornerShape(16.dp),
             shadowElevation = 6.dp

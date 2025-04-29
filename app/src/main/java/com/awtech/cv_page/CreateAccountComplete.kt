@@ -44,7 +44,7 @@ fun CreateAccountComplete(onClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        FilledButtonExample(onClick = {})
+        FilledButtonExample(onClick = {}, "Return to login")
 
 
     }

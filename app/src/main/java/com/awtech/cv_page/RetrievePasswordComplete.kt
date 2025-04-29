@@ -38,7 +38,7 @@ fun RetrievePasswordCompleteComplete(onClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        FilledButtonExample(onClick = {})
+        FilledButtonExample(onClick = {},"text")
 
     }
 }
