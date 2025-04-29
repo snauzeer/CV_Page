@@ -23,18 +23,21 @@ fun PageNav(viewmodel: ViewModel) {
             backStackEntry -> SigninScreen(viewModel = viewmodel,
             createaccount = { navController.navigate("CreateAccount") },
             forgotpassword = {navController.navigate("Retrievepassword")},
-            signin = {destination -> navController.navigate(destination)}
+            signin = { destination -> navController.navigate(destination)}
             )}
 
         composable("Editprofile") { EditProfile(viewModel = viewmodel, Tostartscreen = {
-            navController.navigate("StartPage")
-        }) }
+            destination -> navController.navigate(destination)}) }
         composable("MyAccount") { MyAccount() }
 
-        composable("StartPage") { StartPage(viewmodel) }
+        //composable("StartPage") { StartPage(viewmodel) }
+        composable<Person> { backStackEntry -> val person: Person = backStackEntry.toRoute()
+            StartPage(viewmodel, person= person)
+
+        }
 
 
-        composable("Retrievepassword") { Retrieve() }
+        //composable("Retrievepassword") { Retrieve() }
     }
 
 }

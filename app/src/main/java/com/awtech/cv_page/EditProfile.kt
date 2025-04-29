@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EditProfile( viewModel: ViewModel, Tostartscreen: () -> Unit) {
+fun EditProfile( viewModel: ViewModel, Tostartscreen: (Person) -> Unit) {
 
     var Webpage by remember { mutableStateOf("") }
     var LinkedIn by remember { mutableStateOf("") }
@@ -98,7 +98,7 @@ fun EditProfile( viewModel: ViewModel, Tostartscreen: () -> Unit) {
                             Webpage = Webpage, LinkedIn = LinkedIn, Github = Github,
                             phonenumber = Number)
 
-                        Tostartscreen()
+                        Tostartscreen(tostart)
 
                     }))
             }
